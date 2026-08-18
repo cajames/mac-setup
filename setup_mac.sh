@@ -157,17 +157,11 @@ brew install FelixKratz/formulae/borders
 # Install all useful Apps
 install_cask nikitabobko/tap/aerospace "AeroSpace.app"
 install_cask google-chrome "Google Chrome.app"
-install_cask moom "Moom.app"
-install_cask visual-studio-code "Visual Studio Code.app"
-install_cask sublime-merge "Sublime Merge.app"
 install_cask zed "Zed.app"
-install_cask appcleaner "AppCleaner.app"
-install_cask caffeine "Caffeine.app"
 install_cask 1password "1Password.app"
 install_cask dropbox "Dropbox.app"
 install_cask docker "Docker.app"
 install_cask spotify "Spotify.app"
-install_cask postman "Postman.app"
 install_cask nordvpn "NordVPN.app"
 install_cask obsidian "Obsidian.app"
 install_cask git-credential-manager
@@ -175,8 +169,6 @@ install_cask ghostty "Ghostty.app"
 install_cask beeper "Beeper Desktop.app"
 install_cask zoom "zoom.us.app"
 install_cask raycast "Raycast.app"
-install_cask hazeover "HazeOver.app"
-install_cask bartender "Bartender*.app"
 install_cask cleanshot "CleanShot X.app"
 install_cask fantastical "Fantastical.app"
 install_cask superhuman "Superhuman.app"
@@ -192,7 +184,6 @@ append_once "alias lg='lazygit'" "$HOME/.zshrc"
 
 # Install Coding Font
 # Note: homebrew/cask-fonts was deprecated in 2024, fonts are now in the main cask
-install_cask font-fira-code
 install_cask font-ia-writer-quattro
 install_cask font-hack-nerd-font
 
