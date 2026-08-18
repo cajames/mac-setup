@@ -85,8 +85,9 @@ defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# Finder should show all dotfiles
+# Finder should show dotfiles but hide all Desktop icons
 defaults write com.apple.finder AppleShowAllFiles YES
+defaults write com.apple.finder CreateDesktop -bool false
 killall Finder 2>/dev/null || true
 
 # Disable default Mac behaviour to reopen everything on startup from previous shut down.
