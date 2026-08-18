@@ -1,0 +1,6 @@
+.DS_Store
+**/.DS_Store
+.zshrc.local
+dotfiles/.zshrc.local
+dotfiles/.config/zed/prompts/
+*.log
