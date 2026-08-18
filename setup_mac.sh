@@ -136,7 +136,7 @@ brew install n
 brew install oven-sh/bun/bun
 
 # Install additional development runtimes and tools
-brew install chruby ruby-install postgresql@17 tfenv opencode
+brew install chruby ruby-install postgresql@17 tfenv opencode herdr
 if [[ ! -x "$HOME/.rubies/ruby-3.4.4/bin/ruby" ]]; then
   ruby-install ruby 3.4.4
 fi
