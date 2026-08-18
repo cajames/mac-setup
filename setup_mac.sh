@@ -130,6 +130,11 @@ brew install fd
 brew install zoxide
 brew install eza
 
+# Install window management UI used by AeroSpace config
+brew tap FelixKratz/formulae
+brew install FelixKratz/formulae/sketchybar
+brew install FelixKratz/formulae/borders
+
 # Install all useful Apps
 install_cask nikitabobko/tap/aerospace "AeroSpace.app"
 install_cask google-chrome "Google Chrome.app"
