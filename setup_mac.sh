@@ -113,7 +113,7 @@ append_once 'eval "$(/opt/homebrew/bin/brew shellenv)"' "$HOME/.zprofile"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install and change to ZSH before writing ~/.zshrc
-brew install zsh
+brew install zsh zsh-completions
 if [[ "$SHELL" != "/bin/zsh" ]]; then
   chsh -s /bin/zsh
 fi
@@ -160,7 +160,6 @@ install_cask google-chrome "Google Chrome.app"
 install_cask zed "Zed.app"
 install_cask 1password "1Password.app"
 install_cask dropbox "Dropbox.app"
-install_cask docker "Docker.app"
 install_cask spotify "Spotify.app"
 install_cask nordvpn "NordVPN.app"
 install_cask obsidian "Obsidian.app"
