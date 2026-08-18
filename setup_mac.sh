@@ -113,7 +113,7 @@ append_once 'eval "$(/opt/homebrew/bin/brew shellenv)"' "$HOME/.zprofile"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install and change to ZSH before writing ~/.zshrc
-brew install zsh zsh-completions
+brew install zsh
 if [[ "$SHELL" != "/bin/zsh" ]]; then
   chsh -s /bin/zsh
 fi
