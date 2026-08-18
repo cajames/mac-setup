@@ -61,6 +61,7 @@ install_dotfiles() {
   link_dotfile ".config/sketchybar"
   link_dotfile ".config/starship.toml"
   link_dotfile ".config/zed"
+  link_dotfile "Library/LaunchAgents/com.cajames.capslock-control.plist"
 }
 
 create_local_zshrc() {
@@ -77,6 +78,9 @@ create_local_zshrc() {
 
 install_dotfiles
 create_local_zshrc
+
+# Map Caps Lock to left Control now; LaunchAgent reapplies it at login
+/usr/bin/hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}' >/dev/null
 
 # Script to setup a new Mac
 

@@ -15,6 +15,7 @@ The script is rerunnable. Existing applications and configuration targets are sk
 ## Included dotfiles
 
 - AeroSpace
+- Caps Lock to Control mapping
 - Git global ignore
 - Neovim/LazyVim
 - SketchyBar
