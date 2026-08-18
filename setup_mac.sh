@@ -63,7 +63,20 @@ install_dotfiles() {
   link_dotfile ".config/zed"
 }
 
+create_local_zshrc() {
+  local target="$HOME/.zshrc.local"
+
+  if [[ -e "$target" || -L "$target" ]]; then
+    echo "Skipping .zshrc.local: already exists."
+    return
+  fi
+
+  cp "$SCRIPT_DIR/dotfiles/.zshrc.local.example" "$target"
+  chmod 600 "$target"
+}
+
 install_dotfiles
+create_local_zshrc
 
 # Script to setup a new Mac
 
@@ -116,6 +129,12 @@ brew install npm
 brew install pnpm
 brew install n
 brew install oven-sh/bun/bun
+
+# Install additional development runtimes and tools
+brew install chruby ruby-install postgresql@17 tfenv opencode
+if [[ ! -x "$HOME/.rubies/ruby-3.4.4/bin/ruby" ]]; then
+  ruby-install ruby 3.4.4
+fi
 
 # Run Github Commands from Terminal
 brew install gh
@@ -173,8 +192,9 @@ append_once "alias lg='lazygit'" "$HOME/.zshrc"
 
 # Install Coding Font
 # Note: homebrew/cask-fonts was deprecated in 2024, fonts are now in the main cask
-brew install --cask font-fira-code
-brew install --cask font-ia-writer-quattro
+install_cask font-fira-code
+install_cask font-ia-writer-quattro
+install_cask font-hack-nerd-font
 
 # App Store CLI
 brew install mas

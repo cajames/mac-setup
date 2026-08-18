@@ -26,4 +26,4 @@ Dotfiles are symlinked from `dotfiles/` into `$HOME`.
 
 ## Secrets
 
-Secrets belong in `~/.zshrc.local`, which is not tracked. Use `dotfiles/.zshrc.local.example` as a template. Rotate credentials before moving them to a new Mac.
+Secrets belong in `~/.zshrc.local`, which is not tracked. The setup script creates it from `dotfiles/.zshrc.local.example` when missing. Rotate credentials before moving them to a new Mac.
