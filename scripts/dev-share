@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage:
+  dev-share <port>  Share a local HTTP port privately with Tailscale Serve
+  dev-share status  Show the current Tailscale Serve configuration
+  dev-share off     Remove the Tailscale Serve configuration
+EOF
+}
+
+require_tailscale() {
+  if ! command -v tailscale >/dev/null 2>&1; then
+    printf 'dev-share requires the Tailscale CLI.\n' >&2
+    printf 'Install Tailscale and connect this machine to a tailnet first.\n' >&2
+    exit 1
+  fi
+}
+
+if (($# != 1)); then
+  usage >&2
+  exit 1
+fi
+
+case "$1" in
+-h | --help | help)
+  usage
+  ;;
+status)
+  require_tailscale
+  exec tailscale serve status
+  ;;
+off | stop | reset)
+  require_tailscale
+  tailscale serve reset
+  printf 'Tailscale sharing disabled.\n'
+  ;;
+*)
+  require_tailscale
+  port="$1"
+  if [[ ! "$port" =~ ^[0-9]+$ || ${#port} -gt 5 ]]; then
+    printf 'Invalid port: %s\n' "$port" >&2
+    usage >&2
+    exit 1
+  fi
+
+  port_number=$((10#$port))
+  if ((port_number < 1 || port_number > 65535)); then
+    printf 'Port must be between 1 and 65535.\n' >&2
+    exit 1
+  fi
+
+  target="http://127.0.0.1:${port_number}"
+  if command -v curl >/dev/null 2>&1 &&
+    ! curl --silent --show-error --max-time 2 --output /dev/null "$target"; then
+    printf 'Warning: nothing responded at %s; creating the mapping anyway.\n' "$target" >&2
+  fi
+
+  tailscale serve --bg --yes "$target"
+  printf '\nSharing %s privately on the tailnet:\n' "$target"
+  tailscale serve status
+  ;;
+esac

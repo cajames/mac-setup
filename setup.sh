@@ -90,6 +90,14 @@ verify_sha256() {
     (cd "$(dirname "$file")" && sha256sum --check --status)
 }
 
+install_scripts() {
+  section "Utility scripts"
+
+  mkdir -p "$HOME/.local/bin"
+  install -m 0755 "$SCRIPT_DIR/scripts/dev-share" "$HOME/.local/bin/dev-share"
+  printf '  installed: dev-share\n'
+}
+
 install_dotfiles() {
   section "Dotfiles"
 
@@ -486,6 +494,7 @@ else
   setup_linux
 fi
 
+install_scripts
 install_dotfiles
 
 printf '\nFinished.\n'

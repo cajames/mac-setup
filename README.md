@@ -27,6 +27,7 @@ The script is rerunnable. It skips existing dotfile targets rather than overwrit
 - GitHub CLI
 - ripgrep, fzf, fd, zoxide, eza
 - lazygit and lazydocker
+- `dev-share` helper for private Tailscale Serve links
 - Go, Node.js, npm, pnpm, and OpenCode
 
 Linux installs system packages with `apt-get`. Release binaries and npm tools are pinned to reviewed versions. Downloaded Node and GitHub release archives are verified against upstream SHA-256 records before installation.
@@ -50,6 +51,25 @@ Common links:
 - `.config/starship.toml`
 
 macOS also links `.aerospace.toml`, `.config/sketchybar`, `.config/zed`, and the Caps Lock LaunchAgent.
+
+Utility scripts are installed into `~/.local/bin`, which the managed `.zshrc` adds to `PATH`.
+
+## Sharing a local development server
+
+When Tailscale is installed and connected, expose a localhost HTTP server privately to the tailnet:
+
+```sh
+dev-share 3000
+```
+
+The helper uses Tailscale Serve and prints the private HTTPS URL. It does not use Tailscale Funnel or expose the server publicly.
+
+```sh
+dev-share status  # Show the current mapping
+dev-share off     # Remove the mapping
+```
+
+Running `dev-share` with another port switches the root Serve mapping to that local port.
 
 ## Local secrets
 
