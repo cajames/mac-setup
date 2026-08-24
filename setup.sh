@@ -6,6 +6,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 PLATFORM="$(uname -s)"
 ARCH="$(uname -m)"
 TMP_DIR="$(mktemp -d)"
+DOTFILE_BACKUP_DIR=""
 HOMEBREW_INSTALL_COMMIT="b9990527570f7e07d5393f37447b8293ec0a78de"
 GVM_INSTALL_COMMIT="dd652539fa4b771840846f8319fad303c7d0a8d2"
 STARSHIP_VERSION="1.26.0"
@@ -64,12 +65,22 @@ link_dotfile() {
 
   if [[ -L "$target" && "$(readlink "$target")" == "$source" ]]; then
     printf '  skip (already linked): %s\n' "$relative_path"
-  elif [[ -e "$target" || -L "$target" ]]; then
-    printf '  skip (target exists):  %s\n' "$relative_path"
-  else
-    ln -s "$source" "$target"
-    printf '  linked: %s\n' "$relative_path"
+    return
   fi
+
+  if [[ -e "$target" || -L "$target" ]]; then
+    if [[ -z "$DOTFILE_BACKUP_DIR" ]]; then
+      mkdir -p "$HOME/.config-backups"
+      DOTFILE_BACKUP_DIR="$(mktemp -d "$HOME/.config-backups/mac-setup-$(date +%Y%m%d-%H%M%S)-XXXXXX")"
+      printf '  backing up existing targets to %s\n' "$DOTFILE_BACKUP_DIR"
+    fi
+    mkdir -p "$DOTFILE_BACKUP_DIR/$(dirname "$relative_path")"
+    mv "$target" "$DOTFILE_BACKUP_DIR/$relative_path"
+    printf '  backed up: %s\n' "$relative_path"
+  fi
+
+  ln -s "$source" "$target"
+  printf '  linked: %s\n' "$relative_path"
 }
 
 github_asset_sha256() {

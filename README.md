@@ -15,7 +15,7 @@ cd ~/repos/mac-setup
 ./setup.sh
 ```
 
-The script is rerunnable. It skips existing dotfile targets rather than overwriting them. Source repositories, including oh-my-zsh and local Neovim plugins, are cloned under `~/repos/`.
+The script is rerunnable. Existing unmanaged dotfile targets are moved to a timestamped directory under `~/.config-backups/` before being replaced with symlinks to this repo. Source repositories, including oh-my-zsh and local Neovim plugins, are cloned under `~/repos/`.
 
 `setup_mac.sh` remains as a compatibility wrapper and delegates to `setup.sh`.
 
@@ -43,7 +43,7 @@ Linux installs system packages with `apt-get`. Release binaries and npm tools ar
 
 ## Dotfiles
 
-Common links:
+Common links update immediately when the checked-out repo changes:
 
 - `.zshrc`
 - `.config/git/ignore`
