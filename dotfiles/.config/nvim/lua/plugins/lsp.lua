@@ -7,9 +7,8 @@ return {
         signs = false,
       },
       servers = {
-        vtsls = {
+        tsgo = {
           settings = {
-            autoUseWorkspaceTsdk = true,
             typescript = {
               preferences = {
                 includeCompletionsForModuleExports = true,
