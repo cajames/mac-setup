@@ -65,9 +65,6 @@ case "$(uname -s)" in
 
     # Go (if installed via tar to /usr/local/go)
     [[ -d /usr/local/go/bin ]] && export PATH="$PATH:/usr/local/go/bin"
-
-    # NPM global
-    export PATH="$HOME/.npm-global/bin:$PATH"
     ;;
 esac
 
@@ -76,11 +73,10 @@ esac
 # ---------------------------------------------------------------------------
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.opencode/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
 
 # ---------------------------------------------------------------------------
 # Machine-local secrets
 # ---------------------------------------------------------------------------
 export NANOBANANA_MODEL="gemini-3-pro-image-preview"
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
-# Pi
-export PATH="/Users/mentat/.npm-global/bin:$PATH"
