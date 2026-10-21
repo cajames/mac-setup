@@ -82,3 +82,5 @@ export PATH="$HOME/.opencode/bin:$PATH"
 # ---------------------------------------------------------------------------
 export NANOBANANA_MODEL="gemini-3-pro-image-preview"
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+# Pi
+export PATH="/Users/mentat/.npm-global/bin:$PATH"
